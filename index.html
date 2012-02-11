@@ -1,0 +1,58 @@
+---
+layout: default
+home: true
+title: Cycling enthusiast and Ruby/Rails developer @ <a href="http://twinenginelabs.com" alt="Twin Engine Labs" title="Twin Engine Labs"><img width="247" height="60" alt="Twin Engine Labs" title="Twin Engine Labs" src="/images/twinenginelogo.png" /></a>, Shreveport, LA.
+excerpt: Mike Mayo; Bicycling enthusiast and Ruby/Rails developer @ Twin Engine Labs, Shreveport, LA.
+---
+
+{% for post in paginator.posts %}
+  <div class="post">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <div class="subtitle">
+      <p class="date">{{ post.date | date_to_string }}
+        {% if post.author %}
+          by <a href="http://twitter.com/{{ post.author.twitter }}" title="{{ post.author.full}}">@{{ post.author.twitter }}</a>
+        {% endif %}
+      </p>
+      <a href="{{post.url}}#disqus_thread" class="comments" data-disqus-identifier="{{post.url}}"></a>
+      <div style="clear: both"></div>
+    </div>
+    <div style="clear: both"></div>
+    <p>{{ post.excerpt }}</p>
+  </div>
+{% endfor %}
+
+<!-- Pagination links -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+      <a href="/" class="previous">Previous</a>
+    {% else %}
+      <a href="/page{{paginator.previous_page}}" class="previous">Previous</a>
+    {% endif %}
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <div class='page-container'>
+    <span class="page_number ">Page: {{paginator.page}} of {{paginator.total_pages}}</span>
+  </div>
+  {% if paginator.next_page %}
+    <a href="/page{{paginator.next_page}}" class="next ">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div>
+<div style="clear: both"></div>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'mikemayoblog'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
